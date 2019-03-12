@@ -2,19 +2,16 @@ package pe.edu.upc.tunkiblockchain
 
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
-import pe.edu.upc.tunkiblockchain.fragments.ClientFragment
 import pe.edu.upc.tunkiblockchain.fragments.ContactFragment
 import pe.edu.upc.tunkiblockchain.fragments.MoreFragment
 import pe.edu.upc.tunkiblockchain.fragments.ShopFragment
-import pe.edu.upc.tunkiblockchain.repository.ClientRepository
-import pe.edu.upc.tunkiblockchain.repository.RetrofitRepository
+import pe.edu.upc.tunkiblockchain.fragments.TransactionsFragment
 import pe.edu.upc.tunkiblockchain.viewholders.activities.LoginActivity
 
 class MainActivity : AppCompatActivity() {
@@ -22,8 +19,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val sharedPref = applicationContext.getSharedPreferences("BlockChainPreferences", Context.MODE_PRIVATE)
 
-        if(getSharedPreferences("BlockChainPreferences",Context.MODE_PRIVATE).getBoolean("logged",false))
+        if(sharedPref.getBoolean("logged",false))
         this.startActivity(Intent(this, LoginActivity::class.java))
 
         bnvTunki.setOnNavigationItemSelectedListener(bnvFragmentsItemSelectedListener)
@@ -50,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 return ShopFragment()
             }
             R.id.navigation_profile -> {
-                return ClientFragment()
+                return TransactionsFragment()
             }
             R.id.navigation_more -> {
                 return MoreFragment()

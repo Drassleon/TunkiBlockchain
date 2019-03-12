@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/rootShops"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:padding="16dp"
+        android:id="@+id/ShopImageProfile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/shop_icon"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvShopName"
+        android:paddingTop="24dp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@id/ShopImageProfile"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/shop_name"/>
+
+</android.support.constraint.ConstraintLayout>

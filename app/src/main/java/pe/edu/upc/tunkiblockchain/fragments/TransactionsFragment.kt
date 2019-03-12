@@ -1,6 +1,5 @@
 package pe.edu.upc.tunkiblockchain.fragments
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -10,8 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import pe.edu.upc.ticketrestkotlin.adapter.ClientAdapter
 import pe.edu.upc.tunkiblockchain.R
+import pe.edu.upc.tunkiblockchain.adapter.TradeTransactionAdapter
 import pe.edu.upc.tunkiblockchain.models.TradeCoins
 import pe.edu.upc.tunkiblockchain.repository.RetrofitRepository
 import pe.edu.upc.tunkiblockchain.repository.TradeCoinsRepository
@@ -19,18 +18,18 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ClientFragment : Fragment() {
+class TransactionsFragment : Fragment() {
 
     private lateinit var tradeRecyclerView: RecyclerView
-    private lateinit var tradeAdapter: ClientAdapter
+    private lateinit var tradeAdapter: TradeTransactionAdapter
     private lateinit var tradeLayoutManager: RecyclerView.LayoutManager
     private var tradesList = ArrayList<TradeCoins>()
     private val retrofit = RetrofitRepository().getRetrofitInstance()
     private val tradeCoinsRepo = retrofit.create(TradeCoinsRepository::class.java)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.client_fragment, container, false)
+        val view = inflater.inflate(R.layout.transactions_fragment, container, false)
         tradeRecyclerView = view.findViewById(R.id.rvTransactions)
-        tradeAdapter = ClientAdapter(tradesList)
+        tradeAdapter = TradeTransactionAdapter(tradesList)
         tradeLayoutManager = LinearLayoutManager(context)
         tradeRecyclerView.adapter = tradeAdapter
         tradeRecyclerView.layoutManager = tradeLayoutManager

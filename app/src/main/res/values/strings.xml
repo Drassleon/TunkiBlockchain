@@ -15,11 +15,13 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="contacts_nav_bar">Contacts</string>
     <string name="commerce_nav_bar">Commerce</string>
-    <string name="profile_nav_bar">Profile</string>
+    <string name="profile_nav_bar">Transactions</string>
     <string name="more_nav_bar">More...</string>
     <string name="phone_number_contact">Phone Number</string>
     <string name="contact_name">Contact Name</string>
     <string name="title_activity_pay_contact">PayContactActivity</string>
     <string name="contact_name_details">Contact Name</string>
     <string name="amount_transacted">Amount Transacted</string>
+    <string name="server_url">35.202.254.121</string>
+    <string name="shop_name">Shop Name</string>
 </resources>

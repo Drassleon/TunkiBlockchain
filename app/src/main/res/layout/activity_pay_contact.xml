@@ -42,12 +42,14 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="32dp"
-        app:fabSize="auto"
-        android:src="@drawable/pay_icon"
-        android:id="@+id/fabPay"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabPay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+            android:src="@drawable/pay_icon"
+            app:backgroundTint="@android:color/holo_green_light"
+            app:fabSize="auto" />
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
