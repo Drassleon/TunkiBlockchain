@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".viewholders.activities.PayContactActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:paddingTop="32dp"
+        android:id="@+id/tvContactNamePay"
+        android:text="@string/contact_name_details"/>
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:paddingTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvContactNamePay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/profile_icon"
+        android:id="@+id/ContactImageProfilePay"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ContactImageProfilePay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:inputType="numberDecimal"
+        android:textSize="60sp"
+        android:id="@+id/etAmount"
+        android:hint="00.00"/>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        app:fabSize="auto"
+        android:src="@drawable/pay_icon"
+        android:id="@+id/fabPay"/>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

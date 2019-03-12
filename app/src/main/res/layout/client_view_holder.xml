@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/rootTrades"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:padding="16dp"
+        android:id="@+id/TransactionIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/transaction_icon"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvContactNameTransactions"
+        android:paddingTop="8dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/TransactionIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/contact_name"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/TransactionIcon"
+        app:layout_constraintTop_toBottomOf="@id/tvContactNameTransactions"
+        android:textSize="14sp"
+        android:paddingTop="16dp"
+        android:id="@+id/tvAmountTransactions"
+        android:text="@string/amount_transacted"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/tvAmountTransactions"
+        app:layout_constraintTop_toBottomOf="@id/tvContactNameTransactions"
+        android:textSize="14sp"
+        android:paddingStart="16dp"
+        android:text="TimeStamp"
+        android:paddingTop="16dp"
+        android:id="@+id/tvTimeStamp"
+        />
+</android.support.constraint.ConstraintLayout>

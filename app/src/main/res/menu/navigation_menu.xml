@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_contacts"
+        android:icon="@drawable/contacts_icon"
+        android:title="@string/contacts_nav_bar" />
+
+    <item
+        android:id="@+id/navigation_shops"
+        android:icon="@drawable/shop_icon"
+        android:title="@string/commerce_nav_bar" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/profile_icon"
+        android:title="@string/profile_nav_bar" />
+    <item
+        android:id="@+id/navigation_more"
+        android:icon="@drawable/more_icon"
+        android:title="@string/more_nav_bar" />
+
+</menu>
