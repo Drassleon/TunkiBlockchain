@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import pe.edu.upc.tunkiblockchain.R
 import pe.edu.upc.tunkiblockchain.adapter.ContactAdapter
@@ -25,6 +26,7 @@ class ContactFragment : Fragment() {
     private lateinit var contactRecyclerView: RecyclerView
     private lateinit var contactAdapter: ContactAdapter
     private lateinit var contactLayoutManager: RecyclerView.LayoutManager
+    private lateinit var tokenAmountTextView: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.contacts_fragment, container, false)
@@ -34,6 +36,7 @@ class ContactFragment : Fragment() {
         val sharedPref = context?.applicationContext?.getSharedPreferences("BlockChainPreferences",Context.MODE_PRIVATE)
         val currentUser = sharedPref?.getString("userId","DefUserId")
         Log.d("Debug",currentUser)
+        tokenAmountTextView = view.findViewById(R.id.tvAmountTokensContacts)
         contactRecyclerView = view.findViewById(R.id.rvContacts)
         contactAdapter = ContactAdapter(contactsList)
         contactLayoutManager = LinearLayoutManager(this.context)
@@ -45,12 +48,14 @@ class ContactFragment : Fragment() {
         contactListCall.enqueue(object: Callback<List<Client>> {
             override fun onResponse(call: Call<List<Client>>, response: Response<List<Client>>) {
                 contactsList = response.body() as ArrayList<Client>
-                var currentClient: Client = Client()
+                var currentClient = Client()
                 for(contact in contactsList)
                 {
                     if(contact.clientId==currentUser)
                     {
                         currentClient=contact
+                        tokenAmountTextView.text = currentClient.savings.toString()
+                        sharedPref?.edit()?.putString("amountTokens",currentClient.savings.toString())?.apply()
                     }
                 }
                 contactsList.remove(currentClient)

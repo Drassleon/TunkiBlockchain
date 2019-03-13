@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitRepository{
 
     companion object {
-        private var BASE_URL : String = "http://35.226.25.204:3000/api/"
+        private var BASE_URL : String = "http://35.192.163.44:3000/api/"
         private lateinit var retrofit : Retrofit
     }
 

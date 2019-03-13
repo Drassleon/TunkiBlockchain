@@ -11,7 +11,7 @@ class SellCoins{
     val `$class`: String? = "org.tunki.network.SellCoins"
     @SerializedName("client")
     @Expose
-    var client: Client? = null
+    var client: String? = null
     @SerializedName("shop")
     @Expose
     var shop: String? = null

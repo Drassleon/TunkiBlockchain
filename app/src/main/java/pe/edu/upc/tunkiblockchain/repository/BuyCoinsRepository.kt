@@ -2,10 +2,7 @@ package pe.edu.upc.tunkiblockchain.repository
 
 import pe.edu.upc.tunkiblockchain.models.BuyCoins
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface BuyCoinsRepository {
     @POST("BuyCoins")
@@ -14,4 +11,7 @@ interface BuyCoinsRepository {
     fun getBuyCoinsTransactions(): Call<List<BuyCoins>>
     @GET("BuyCoins/{id}")
     fun getBuyCoinsTransaction(@Path("id") transactionId: String): Call<BuyCoins>
+    @GET("queries/SelectCoinPurchasebyClient")
+    fun getBuyTransactionByClient(@Query("clientId") clientId: String): Call<List<BuyCoins>>
+
 }

@@ -12,7 +12,7 @@
         android:layout_margin="8dp"
         android:id="@+id/tunkiIcon"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/tvAmountTokens"/>
+        app:layout_constraintEnd_toStartOf="@id/tvAmountTokensShop"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="16dp"
         android:textStyle="bold"
-        android:id="@+id/tvAmountTokens"
+        android:id="@+id/tvAmountTokensShop"
         android:text="Amount"/>
     <TextView
         android:layout_width="wrap_content"
