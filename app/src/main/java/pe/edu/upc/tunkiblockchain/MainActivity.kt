@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         bnvTunki.setOnNavigationItemSelectedListener(bnvFragmentsItemSelectedListener)
         bnvTunki.selectedItemId = R.id.navigation_contacts
     }
+
     private val bnvFragmentsItemSelectedListener : BottomNavigationView.OnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
             item ->
         return@OnNavigationItemSelectedListener navigateTo(item)

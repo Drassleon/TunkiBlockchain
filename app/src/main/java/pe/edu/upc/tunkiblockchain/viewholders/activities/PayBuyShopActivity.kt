@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import pe.edu.upc.tunkiblockchain.R
@@ -28,6 +30,8 @@ class PayBuyShopActivity : AppCompatActivity() {
     private lateinit var sellFab: FloatingActionButton
     private lateinit var amountTextView: TextView
     private lateinit var tokenAmountTextView: TextView
+    private lateinit var loadingAnimation: ProgressBar
+    private lateinit var loadingTextView: TextView
     private var buyCoins = BuyCoins()
     private var sellCoins = SellCoins()
 
@@ -43,6 +47,8 @@ class PayBuyShopActivity : AppCompatActivity() {
         sellFab = findViewById(R.id.fabSell)
         amountTextView = findViewById(R.id.etAmountShopDetails)
         tokenAmountTextView = findViewById(R.id.tvAmountTokensShop)
+        loadingAnimation = findViewById(R.id.loadingAnimationP2C)
+        loadingTextView = findViewById(R.id.tvLoadingP2C)
 
         shopNameTextView.text = shop.coinProviderName
         tokenAmountTextView.text = getSharedPreferences("BlockChainPreferences",Context.MODE_PRIVATE).getString("amountTokens","DefTokenValue") as String
@@ -51,14 +57,20 @@ class PayBuyShopActivity : AppCompatActivity() {
             buyCoins.client = "org.tunki.network.Client#$currentUser"
             buyCoins.shop = "${shop.`$class`}#${shop.coinProviderId}"
             buyCoins.exchangeRate = 1.0
+            loadingAnimation.visibility = View.VISIBLE
+            loadingTextView.visibility = View.VISIBLE
             buyCoinsRepository.postBuyCoinTransaction(buyCoins).enqueue(object: Callback<BuyCoins>{
                 override fun onResponse(call: Call<BuyCoins>, response: Response<BuyCoins>) {
+                    loadingAnimation.visibility = View.GONE
+                    loadingTextView.visibility = View.GONE
                     Toast.makeText(this@PayBuyShopActivity,"Purchase Successful",Toast.LENGTH_SHORT).show()
                     Log.d("Debug","Purchase Successful")
                     finish()
                 }
 
                 override fun onFailure(call: Call<BuyCoins>, t: Throwable) {
+                    loadingAnimation.visibility = View.GONE
+                    loadingTextView.visibility = View.GONE
                     Toast.makeText(this@PayBuyShopActivity,"Purchase failed!",Toast.LENGTH_SHORT).show()
                     Log.d("Debug","Purchase Failed!",t)
                 }
@@ -69,14 +81,20 @@ class PayBuyShopActivity : AppCompatActivity() {
             sellCoins.client = "org.tunki.network.Client#$currentUser"
             sellCoins.exchangeRate = 1.0
             sellCoins.shop = "${shop.`$class`}#${shop.coinProviderId}"
+            loadingAnimation.visibility = View.VISIBLE
+            loadingTextView.visibility = View.VISIBLE
             sellCoinsRepository.postSellCoinsTransaction(sellCoins).enqueue(object: Callback<SellCoins>{
                 override fun onResponse(call: Call<SellCoins>, response: Response<SellCoins>) {
+                    loadingAnimation.visibility = View.GONE
+                    loadingTextView.visibility = View.GONE
                     Toast.makeText(this@PayBuyShopActivity,"Sale Successful",Toast.LENGTH_SHORT).show()
                     Log.d("Debug","Sale Successful")
                     finish()
                 }
 
                 override fun onFailure(call: Call<SellCoins>, t: Throwable) {
+                    loadingAnimation.visibility = View.GONE
+                    loadingTextView.visibility = View.GONE
                     Toast.makeText(this@PayBuyShopActivity,"Sale Failed!",Toast.LENGTH_SHORT).show()
                     Log.d("Debug","Sale Failed!",t)
                 }

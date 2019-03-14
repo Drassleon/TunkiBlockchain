@@ -32,7 +32,7 @@ class SellTransactionAdapter(var list: List<SellCoins>) : RecyclerView.Adapter<S
             override fun onResponse(call: Call<CoinProvider>, response: Response<CoinProvider>) {
                 shop = response.body() as CoinProvider
                 holder.shopNameSellTransaction.text = shop.coinProviderName
-                holder.amountSellTrasactionTextView.text = "S/. ${list[position].amount.toString()}"
+                holder.amountSellTransactionTextView.text = "S/. ${list[position].amount.toString()}"
                 holder.timestampTextView.text = "$time at $date"
             }
 

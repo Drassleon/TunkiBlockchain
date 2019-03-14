@@ -2,11 +2,30 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
-    android:layout_width="wrap_content">
+    android:layout_width="match_parent">
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/NoTransactionsTextView"
+            android:text="No transactions to show!"
+            android:textStyle="bold"
+            android:textSize="24sp"/>
+        <android.support.v7.widget.RecyclerView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingBottom="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:id="@+id/rvTradeTransactions"/>
+        <!--<TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +37,7 @@
             app:layout_constraintTop_toBottomOf="@id/TradeTransactionTitle"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
             android:id="@+id/rvTradeTransactions"/>
         <TextView
             android:layout_width="wrap_content"
@@ -47,6 +66,6 @@
             android:layout_height="120dp"
             app:layout_constraintTop_toBottomOf="@id/SellTransactionTitle"
             app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/rvSellTransactions"/>
+            android:id="@+id/rvSellTransactions"/>-->
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

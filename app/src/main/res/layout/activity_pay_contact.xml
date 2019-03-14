@@ -7,12 +7,32 @@
     android:layout_height="match_parent"
     tools:context=".viewholders.activities.PayContactActivity">
 
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        style="@style/SpinKitView.FoldingCube"
+        app:SpinKit_Color="@android:color/holo_blue_dark"
+        android:id="@+id/loadingAnimationP2P"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loading..."
+        android:id="@+id/tvLoading"
+        app:layout_constraintTop_toBottomOf="@id/loadingAnimationP2P"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLoading"
         android:textStyle="bold"
         android:textSize="32sp"
         android:paddingTop="32dp"

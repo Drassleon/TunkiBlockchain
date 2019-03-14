@@ -2,10 +2,7 @@ package pe.edu.upc.tunkiblockchain.repository
 
 import pe.edu.upc.tunkiblockchain.models.TradeCoins
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface TradeCoinsRepository {
     @POST("TradeCoins")
@@ -14,4 +11,6 @@ interface TradeCoinsRepository {
     fun getTradeCoinsTransactions(): Call<List<TradeCoins>>
     @GET("TradeCoins/{id}")
     fun getTradeCoinsTransaction(@Path("id") transactionId: String): Call<TradeCoins>
+    @GET("queries/SelectTradesbyClientFrom")
+    fun getTradebyClientFrom(@Query("clientId")clientId: String): Call<List<TradeCoins>>
 }

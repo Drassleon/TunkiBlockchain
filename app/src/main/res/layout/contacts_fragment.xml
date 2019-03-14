@@ -3,31 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
-<android.support.constraint.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/tunki_coin"
-        android:layout_margin="8dp"
-        android:id="@+id/tunkiIcon"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/tvAmountTokensContacts"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="16dp"
-        android:textStyle="bold"
-        android:id="@+id/tvAmountTokensContacts"
-        android:text="Amount"/>
-<android.support.v7.widget.RecyclerView
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/rvContacts"/>
-</android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tokensLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/tunki_coin"
+                android:layout_margin="8dp"
+                android:id="@+id/tunkiIcon" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"
+                android:id="@+id/tvAmountTokensContacts"
+                android:text="Amount"/>
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            app:layout_constraintTop_toBottomOf="@id/tokensLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rvContacts"/>
+    </android.support.constraint.ConstraintLayout>
 </FrameLayout>

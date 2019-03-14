@@ -5,6 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".viewholders.activities.PayBuyShopActivity">
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        style="@style/SpinKitView.DoubleBounce"
+        app:SpinKit_Color="@android:color/holo_blue_dark"
+        android:id="@+id/loadingAnimationP2C"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loading..."
+        android:id="@+id/tvLoadingP2C"
+        app:layout_constraintTop_toBottomOf="@id/loadingAnimationP2C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"/>
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
