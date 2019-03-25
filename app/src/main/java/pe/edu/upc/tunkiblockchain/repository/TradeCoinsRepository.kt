@@ -6,11 +6,11 @@ import retrofit2.http.*
 
 interface TradeCoinsRepository {
     @POST("TradeCoins")
-    fun postTradeCoins(@Body tradeCoins: TradeCoins): Call<TradeCoins>
+    fun postTradeCoins(@Body tradeCoins: TradeCoins,@Query("access_token")tokenKey: String): Call<TradeCoins>
     @GET("TradeCoins")
-    fun getTradeCoinsTransactions(): Call<List<TradeCoins>>
+    fun getTradeCoinsTransactions(@Query("access_token")tokenKey: String): Call<List<TradeCoins>>
     @GET("TradeCoins/{id}")
-    fun getTradeCoinsTransaction(@Path("id") transactionId: String): Call<TradeCoins>
+    fun getTradeCoinsTransaction(@Path("id") transactionId: String,@Query("access_token")tokenKey: String): Call<TradeCoins>
     @GET("queries/SelectTradesbyClientFrom")
     fun getTradebyClientFrom(@Query("clientId")clientId: String): Call<List<TradeCoins>>
 }

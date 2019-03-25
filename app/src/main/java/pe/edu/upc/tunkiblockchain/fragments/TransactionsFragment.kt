@@ -16,10 +16,7 @@ import pe.edu.upc.tunkiblockchain.adapter.TransactionsAdapter
 import pe.edu.upc.tunkiblockchain.models.BuyCoins
 import pe.edu.upc.tunkiblockchain.models.SellCoins
 import pe.edu.upc.tunkiblockchain.models.TradeCoins
-import pe.edu.upc.tunkiblockchain.repository.BuyCoinsRepository
-import pe.edu.upc.tunkiblockchain.repository.RetrofitRepository
-import pe.edu.upc.tunkiblockchain.repository.SellCoinsRepository
-import pe.edu.upc.tunkiblockchain.repository.TradeCoinsRepository
+import pe.edu.upc.tunkiblockchain.repository.*
 import pe.edu.upc.tunkiblockchain.utils.TransactionsTypes
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,7 +43,7 @@ class TransactionsFragment : Fragment() {
 
     private lateinit var noTransactionsTextView: TextView
     private var transactionList = ArrayList<TransactionsTypes>()
-    private val retrofit = RetrofitRepository().getRetrofitInstance()
+    private val retrofit = RetrofitIdentityIssuer().getRetrofitInstance()
 
     private var buyList = ArrayList<BuyCoins>()
     private val buyCoinsRepo = retrofit.create(BuyCoinsRepository::class.java)
@@ -60,6 +57,8 @@ class TransactionsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.transactions_fragment, container, false)
         val currentUserId = this.context?.applicationContext?.getSharedPreferences("BlockChainPreferences", Context.MODE_PRIVATE)?.getString("userId","DefUserId") as String
+        val sharedPref = this.context?.applicationContext?.getSharedPreferences("BlockChainPreferences",Context.MODE_PRIVATE)
+
         Log.d("Debug","Current user for transactions $currentUserId")
         var counter = 0
         transactionRecyclerView = view.findViewById(R.id.rvTradeTransactions)
@@ -156,7 +155,9 @@ class TransactionsFragment : Fragment() {
             }
         })
 
-        sellCoinsRepo.getSellTransactionByClient("resource:org.tunki.network.Client#$currentUserId").enqueue(object: Callback<List<SellCoins>>{
+        val sellCoinsCall = sellCoinsRepo.getSellTransactionByClient("resource:org.tunki.network.Client#$currentUserId")
+        Log.d("Debug",sellCoinsCall.request().toString())
+        sellCoinsCall.enqueue(object: Callback<List<SellCoins>>{
             override fun onResponse(call: Call<List<SellCoins>>, response: Response<List<SellCoins>>) {
                 if(response.body()==null)
                 {

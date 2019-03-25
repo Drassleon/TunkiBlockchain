@@ -1,5 +1,6 @@
 package pe.edu.upc.tunkiblockchain.adapter
 
+import android.content.Context
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -17,6 +18,8 @@ class BuyTransactionViewHolder(itemView: View) : TransactionViewHolder(itemView)
     val shopNameBuyTransaction = itemView.findViewById(R.id.tvShopNameBuyTransaction) as TextView
     val amountBuyTransactionTextView = itemView.findViewById(R.id.tvAmountBuyTransactions) as TextView
     val timestampTextView = itemView.findViewById(R.id.tvTimeStampBuy) as TextView
+    val sharedPref = itemView.context.applicationContext.getSharedPreferences("BlockChainPreferences", Context.MODE_PRIVATE)
+
     override fun bindType(item: TransactionsTypes) {
         val shopRepo = RetrofitRepository().getRetrofitInstance().create(CoinProviderRepository::class.java)
         val typedItem = item as BuyCoins
@@ -29,7 +32,7 @@ class BuyTransactionViewHolder(itemView: View) : TransactionViewHolder(itemView)
         val unFormattedTime = unFormattedListTime[1].split(".")
         val time = unFormattedTime[0]
 
-        val shopCall = shopRepo.getCoinProvider(unFormattedList[1])
+        val shopCall = shopRepo.getCoinProvider(unFormattedList[1],sharedPref.getString("api_key","api_key") as String)
         var shop : CoinProvider
         shopCall.enqueue(object: Callback<CoinProvider> {
             override fun onResponse(call: Call<CoinProvider>, response: Response<CoinProvider>) {

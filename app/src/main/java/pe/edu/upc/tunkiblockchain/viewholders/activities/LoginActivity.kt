@@ -156,6 +156,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             sharedPref.edit().putString("username","Alvaro").apply()
             sharedPref.edit().putString("userId","C001").apply()
             sharedPref.edit().putBoolean("logged",true).apply()
+            sharedPref.edit().putString("api_key","01cocEAYXScSZIwWZ2hEBMgMEQAqFskKWc0gzNpan6YZofeYcaoYAIn3boEAj6eR").apply()
             Log.d("Debug","Saved Username Alvaro on Shared Preferences Instance")
         }
         if(email=="toconasalvaro@gmail.com")
@@ -165,6 +166,15 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             sharedPref.edit().putString("userId","C004").apply()
             sharedPref.edit().putBoolean("logged",true).apply()
             Log.d("Debug","Saved Username Constanza on Shared Preferences Instance")
+        }
+        if(email=="davidTito@intercorp.com.pe")
+        {
+            flag = true
+            sharedPref.edit().putString("username","David").apply()
+            sharedPref.edit().putString("userId","C006").apply()
+            sharedPref.edit().putBoolean("logged",true).apply()
+            sharedPref.edit().putString("api_key","D8GI4aaZ6aZJbH6eSytcUmmX275IYxZuLsaACHHpqOElyhiyjsaKRdTEyejXTSxq").apply()
+            Log.d("Debug","Saved Username David on Shared Preferences Instance")
         }
         return flag
     }

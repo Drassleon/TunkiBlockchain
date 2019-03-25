@@ -4,11 +4,9 @@ import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-class RetrofitRepository{
-
+class RetrofitIdentityIssuer {
     companion object {
-        private var BASE_URL : String = "http://35.193.67.153:3000/api/"
+        private var BASE_URL : String = "http://35.193.67.153:3001/api/"
         private lateinit var retrofit : Retrofit
     }
 

@@ -44,9 +44,15 @@ class ContactFragment : Fragment() {
         contactRecyclerView.layoutManager = contactLayoutManager
         contactAdapter.notifyDataSetChanged()
 
-        var contactListCall = clientRepo.getAllClients()
+        val contactListCall = clientRepo.getAllClients(sharedPref?.getString("api_key","api_key")as String)
+        Log.d("Debug",contactListCall.request().toString())
         contactListCall.enqueue(object: Callback<List<Client>> {
             override fun onResponse(call: Call<List<Client>>, response: Response<List<Client>>) {
+                if(response.body()==null)
+                {
+                    Log.d("Debug",response.body().toString())
+                    return
+                }
                 contactsList = response.body() as ArrayList<Client>
                 var currentClient = Client()
                 for(contact in contactsList)

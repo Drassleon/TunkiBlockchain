@@ -1,5 +1,6 @@
 package pe.edu.upc.tunkiblockchain.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -29,12 +30,14 @@ class ShopFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.shop_fragment, container, false)
         var shops = ArrayList<CoinProvider>()
+        val sharedPref = this.context?.applicationContext?.getSharedPreferences("BlockChainPreferences", Context.MODE_PRIVATE)
+
         shopRecyclerView = view.findViewById(R.id.rvShops)
         shopAdapter = ShopAdapter(shops)
         shopLayoutManager = LinearLayoutManager(this@ShopFragment.context)
         shopRecyclerView.adapter = shopAdapter
         shopRecyclerView.layoutManager = shopLayoutManager
-        val shopsCall = shopRepo.getAllCoinProviders()
+        val shopsCall = shopRepo.getAllCoinProviders(sharedPref?.getString("api_key","api_key")as String)
         shopsCall.enqueue(object: Callback<List<CoinProvider>>{
             override fun onResponse(call: Call<List<CoinProvider>>, response: Response<List<CoinProvider>>) {
                 shops = response.body() as ArrayList<CoinProvider>

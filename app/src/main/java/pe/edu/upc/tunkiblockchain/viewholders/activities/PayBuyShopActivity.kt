@@ -42,6 +42,9 @@ class PayBuyShopActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pay_buy_shop)
         val currentUser = getSharedPreferences("BlockChainPreferences", Context.MODE_PRIVATE).getString("userId","DefUserId") as String
 
+        val sharedPref = applicationContext.getSharedPreferences("BlockChainPreferences",Context.MODE_PRIVATE)
+
+
         val shop = intent.getSerializableExtra("shop") as CoinProvider
 
         shopNameTextView = findViewById(R.id.tvShopNameTransaction)
@@ -61,7 +64,7 @@ class PayBuyShopActivity : AppCompatActivity() {
             buyCoins.exchangeRate = 1.0
             //loadingAnimation.visibility = View.VISIBLE
             //loadingTextView.visibility = View.VISIBLE
-            buyCoinsRepository.postBuyCoinTransaction(buyCoins).enqueue(object: Callback<BuyCoins>{
+            buyCoinsRepository.postBuyCoinTransaction(buyCoins,sharedPref.getString("api_key","api_key")as String).enqueue(object: Callback<BuyCoins>{
                 override fun onResponse(call: Call<BuyCoins>, response: Response<BuyCoins>) {
                     //loadingAnimation.visibility = View.GONE
                     //loadingTextView.visibility = View.GONE
@@ -86,7 +89,7 @@ class PayBuyShopActivity : AppCompatActivity() {
             sellCoins.shop = "${shop.`$class`}#${shop.coinProviderId}"
             //loadingAnimation.visibility = View.VISIBLE
             //loadingTextView.visibility = View.VISIBLE
-            sellCoinsRepository.postSellCoinsTransaction(sellCoins).enqueue(object: Callback<SellCoins>{
+            sellCoinsRepository.postSellCoinsTransaction(sellCoins,sharedPref.getString("api_key","api_key")as String).enqueue(object: Callback<SellCoins>{
                 override fun onResponse(call: Call<SellCoins>, response: Response<SellCoins>) {
                     //loadingAnimation.visibility = View.GONE
                     //loadingTextView.visibility = View.GONE

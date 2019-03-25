@@ -35,7 +35,7 @@ class PayContactActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pay_contact)
 
-
+        val sharedPref = applicationContext.getSharedPreferences("BlockChainPreferences",Context.MODE_PRIVATE)
 
         val contact = intent.extras.getSerializable("contact") as Client
         val currentUser = getSharedPreferences("BlockChainPreferences", Context.MODE_PRIVATE).getString("userId","DefUserId")
@@ -59,7 +59,7 @@ class PayContactActivity : AppCompatActivity() {
             tradeCoins.clientTo = "org.tunki.network.Client#${contact.clientId}"
             //loadingAnimation.visibility = View.VISIBLE
             //loadingtv.visibility = View.VISIBLE
-            tradeCoinsRepo.postTradeCoins(tradeCoins).enqueue(object: Callback<TradeCoins>{
+            tradeCoinsRepo.postTradeCoins(tradeCoins,sharedPref.getString("api_key","api_key")as String).enqueue(object: Callback<TradeCoins>{
                 override fun onResponse(call: Call<TradeCoins>, response: Response<TradeCoins>) {
                     //loadingAnimation.visibility = View.GONE
                     //loadingtv.visibility = View.GONE

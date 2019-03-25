@@ -26,7 +26,7 @@ class SellTransactionAdapter(var list: List<SellCoins>) : RecyclerView.Adapter<S
         val unFormattedTime = unFormattedListTime[1].split(".")
         val time = unFormattedTime[0]
 
-        val shopCall = shopRepo.getCoinProvider(unFormattedList[1])
+        val shopCall = shopRepo.getCoinProvider(unFormattedList[1],holder.sharedPref.getString("api_key","api_key") as String)
         var shop : CoinProvider
         shopCall.enqueue(object: Callback<CoinProvider> {
             override fun onResponse(call: Call<CoinProvider>, response: Response<CoinProvider>) {

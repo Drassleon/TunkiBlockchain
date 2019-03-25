@@ -27,7 +27,7 @@ class TradeTransactionAdapter(var list: List<TradeCoins>) : RecyclerView.Adapter
         val unFormattedTime = unFormattedListTime[1].split(".")
         val time = unFormattedTime[0]
 
-        val contactCall = clientRepo.getClient(unFormattedList[1])
+        val contactCall = clientRepo.getClient(unFormattedList[1],holder.sharedPref.getString("api_key","api_key")as String)
         var contact : Client = Client()
         contactCall.enqueue(object: Callback<Client>{
             override fun onResponse(call: Call<Client>, response: Response<Client>) {
