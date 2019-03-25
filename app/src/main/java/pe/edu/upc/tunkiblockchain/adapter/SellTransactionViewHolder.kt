@@ -14,6 +14,9 @@ import pe.edu.upc.tunkiblockchain.utils.TransactionsTypes
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class SellTransactionViewHolder(itemView: View) : TransactionViewHolder(itemView) {
     val shopNameSellTransaction = itemView.findViewById(R.id.tvShopNameSellTransaction) as TextView
@@ -31,7 +34,25 @@ class SellTransactionViewHolder(itemView: View) : TransactionViewHolder(itemView
         val unFormattedListTime = unFormattedTimestamp.split("T")
         val date = unFormattedListTime[0]
         val unFormattedTime = unFormattedListTime[1].split(".")
-        val time = unFormattedTime[0]
+
+        val days = date.split("-")[2].toInt()
+        Log.d("Debug",days.toString())
+        val months = date.split("-")[1].toInt()
+        Log.d("Debug",months.toString())
+        val years = date.split("-")[0].toInt()
+        Log.d("Debug",years.toString())
+
+        val hours = unFormattedTime[0].split(":")[0].toInt()
+        Log.d("Debug",hours.toString())
+        val minutes = unFormattedTime[0].split(":")[1].toInt()
+        Log.d("Debug",minutes.toString())
+        val seconds = unFormattedTime[0].split(":")[2].toInt()
+        Log.d("Debug",seconds.toString())
+
+
+        var formatter1 = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy")
+        var datetimeFormatted = formatter1.format(LocalDateTime.of(years,months,days,hours,minutes,seconds).minusHours(5))
+
 
 
 
@@ -42,7 +63,7 @@ class SellTransactionViewHolder(itemView: View) : TransactionViewHolder(itemView
                 shop = response.body() as CoinProvider
                 shopNameSellTransaction.text = shop.coinProviderName
                 amountSellTransactionTextView.text = "- S/. ${typedItem.amount.toString()}"
-                timestampTextView.text = "$time at $date"
+                timestampTextView.text = "$datetimeFormatted"
                 if(shop.coinProviderName=="Plaza Vea")
                 {
                     sellIcon.setImageResource(R.drawable.plaza_vea_logo)

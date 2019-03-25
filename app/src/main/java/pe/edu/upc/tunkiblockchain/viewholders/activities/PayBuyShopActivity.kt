@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -28,12 +29,14 @@ class PayBuyShopActivity : AppCompatActivity() {
     private val sellCoinsRepository = RetrofitRepository().getRetrofitInstance().create(SellCoinsRepository::class.java)
 
     private lateinit var shopNameTextView: TextView
+    private lateinit var shopProfileImageView: ImageView
     private lateinit var buyFab: FloatingActionButton
     private lateinit var sellFab: FloatingActionButton
     private lateinit var amountTextView: TextView
     private lateinit var tokenAmountTextView: TextView
     private lateinit var loadingAnimation: ProgressBar
     private lateinit var loadingTextView: TextView
+
     private var buyCoins = BuyCoins()
     private var sellCoins = SellCoins()
 
@@ -44,10 +47,10 @@ class PayBuyShopActivity : AppCompatActivity() {
 
         val sharedPref = applicationContext.getSharedPreferences("BlockChainPreferences",Context.MODE_PRIVATE)
 
-
         val shop = intent.getSerializableExtra("shop") as CoinProvider
 
         shopNameTextView = findViewById(R.id.tvShopNameTransaction)
+        shopProfileImageView = findViewById(R.id.ShopImageProfileDetails)
         buyFab = findViewById(R.id.fabBuy)
         sellFab = findViewById(R.id.fabSell)
         amountTextView = findViewById(R.id.etAmountShopDetails)
@@ -57,17 +60,22 @@ class PayBuyShopActivity : AppCompatActivity() {
 
         shopNameTextView.text = shop.coinProviderName
         tokenAmountTextView.text = getSharedPreferences("BlockChainPreferences",Context.MODE_PRIVATE).getString("amountTokens","DefTokenValue") as String
+
+        when(shop.coinProviderName)
+        {
+            "Plaza Vea"->shopProfileImageView.setImageResource(R.drawable.plaza_vea_logo)
+            "Agente IBK Torre"->shopProfileImageView.setImageResource(R.drawable.ibk_logo)
+            "Cajero IBK Torre"->shopProfileImageView.setImageResource(R.drawable.ibk_logo)
+        }
+
         buyFab.setOnClickListener {
             buyCoins.amount = amountTextView.text.toString().toDouble()
             buyCoins.client = "org.tunki.network.Client#$currentUser"
             buyCoins.shop = "${shop.`$class`}#${shop.coinProviderId}"
             buyCoins.exchangeRate = 1.0
-            //loadingAnimation.visibility = View.VISIBLE
-            //loadingTextView.visibility = View.VISIBLE
+
             buyCoinsRepository.postBuyCoinTransaction(buyCoins,sharedPref.getString("api_key","api_key")as String).enqueue(object: Callback<BuyCoins>{
                 override fun onResponse(call: Call<BuyCoins>, response: Response<BuyCoins>) {
-                    //loadingAnimation.visibility = View.GONE
-                    //loadingTextView.visibility = View.GONE
                     Log.d("Debug","Purchase Successful")
                     Toast.makeText(this@PayBuyShopActivity,"Purchase Successful",Toast.LENGTH_SHORT).show()
                     finish()

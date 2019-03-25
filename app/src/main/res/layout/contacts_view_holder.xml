@@ -32,4 +32,10 @@
         android:paddingTop="16dp"
         android:id="@+id/tvPhoneNumber"
         android:text="@string/phone_number_contact"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/ContactImageProfile"
+        android:layout_marginTop="6dp"
+        android:background="@android:color/black" />
 </android.support.constraint.ConstraintLayout>

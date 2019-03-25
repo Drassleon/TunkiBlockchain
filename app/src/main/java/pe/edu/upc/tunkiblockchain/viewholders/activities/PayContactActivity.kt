@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.github.ybq.android.spinkit.style.CubeGrid
 import pe.edu.upc.tunkiblockchain.R
 import pe.edu.upc.tunkiblockchain.models.Client
@@ -24,6 +21,7 @@ import retrofit2.Response
 class PayContactActivity : AppCompatActivity() {
 
     private lateinit var contactNameTextView: TextView
+    private lateinit var contactProfileImage: ImageView
     private lateinit var amountEditText: EditText
     private lateinit var payFAB: FloatingActionButton
     private lateinit var loadingAnimation: ProgressBar
@@ -45,6 +43,16 @@ class PayContactActivity : AppCompatActivity() {
             finish()
         }
         contactNameTextView = findViewById(R.id.tvContactNamePay)
+        contactProfileImage = findViewById(R.id.ContactImageProfilePay)
+        when(contact.clientName)
+        {
+            "Juan Paul Rodriguez"->contactProfileImage.setImageResource(R.drawable.juan_image_profile)
+            "Noelia Barragan"->contactProfileImage.setImageResource(R.drawable.noelia_image_profile)
+            "Constanza Salinas"->contactProfileImage.setImageResource(R.drawable.constanza_image_profile)
+            "Mauricio Sanchez"->contactProfileImage.setImageResource(R.drawable.mauricio_image_profile)
+            "Alvaro Toconas"->contactProfileImage.setImageResource(R.drawable.alvaro_image_profile)
+            "David Tito"->contactProfileImage.setImageResource(R.drawable.ibk_logo)
+        }
         amountEditText = findViewById(R.id.etAmount)
         payFAB = findViewById(R.id.fabPay)
         loadingtv = findViewById(R.id.tvLoading)

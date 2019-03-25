@@ -153,7 +153,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             sharedPref.edit().putString("username","Alvaro").apply()
             sharedPref.edit().putString("userId","C001").apply()
             sharedPref.edit().putBoolean("logged",true).apply()
-            sharedPref.edit().putString("api_key","iiG4P8A8pUHGO3E4Tf4Ib1aL4eEZbSKTAVEETFBTuKsUTQfpqfFREH7mCiicFkhX").apply()
+            sharedPref.edit().putString("api_key","WUGefkFU8Tr6aPFncvVNPCMAhaWELeYaR52v6PcZxkz4yN56vm7vQuTZUowM3Coc").apply()
             Log.d("Debug","Saved Username Alvaro on Shared Preferences Instance")
         }
         if(email=="toconasalvaro@gmail.com")
