@@ -16,6 +16,13 @@ class ShopAdapter(var list: List<CoinProvider>): RecyclerView.Adapter<ShopViewHo
 
     override fun onBindViewHolder(holder: ShopViewHolder, pos: Int) {
         holder.shopNameTextView.text = list[pos].coinProviderName
+        if(list[pos].coinProviderName=="Plaza Vea")
+        {
+            holder.shopProfileImageView.setImageResource(R.drawable.plaza_vea_logo)
+        }
+        else if(list[pos].coinProviderName=="Agente IBK Torre"||list[pos].coinProviderName=="Cajero IBK Torre"){
+            holder.shopProfileImageView.setImageResource(R.drawable.ibk_logo)
+        }
         holder.rootShops.setOnClickListener {
             val context = it.context
             context.startActivity(Intent(context, PayBuyShopActivity::class.java).putExtra("shop",list[pos]))

@@ -3,6 +3,7 @@ package pe.edu.upc.tunkiblockchain.adapter
 import android.content.Context
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import pe.edu.upc.tunkiblockchain.R
 import pe.edu.upc.tunkiblockchain.models.Client
@@ -19,6 +20,7 @@ class TradeTransactionViewHolder(itemView: View) : TransactionViewHolder(itemVie
     val contactNameTextView = itemView.findViewById(R.id.tvContactNameTransactions) as TextView
     val amountTransactedTextView = itemView.findViewById(R.id.tvAmountTransactions) as TextView
     val timestampTextView = itemView.findViewById(R.id.tvTimeStamp) as TextView
+    val tradeIcon = itemView.findViewById(R.id.TransactionIcon) as ImageView
     val sharedPref = itemView.context.applicationContext.getSharedPreferences("BlockChainPreferences", Context.MODE_PRIVATE)
 
     override fun bindType(item: TransactionsTypes) {
@@ -41,6 +43,15 @@ class TradeTransactionViewHolder(itemView: View) : TransactionViewHolder(itemVie
                 contactNameTextView.text = contact.clientName
                 amountTransactedTextView.text = "S/. ${typedItem.amount.toString()}"
                 timestampTextView.text = "$time at $date"
+                when(contact.clientName)
+                {
+                    "Juan Paul Rodriguez"->tradeIcon.setImageResource(R.drawable.juan_image_profile)
+                    "Noelia Barragan"->tradeIcon.setImageResource(R.drawable.noelia_image_profile)
+                    "Constanza Salinas"->tradeIcon.setImageResource(R.drawable.constanza_image_profile)
+                    "Mauricio Sanchez"->tradeIcon.setImageResource(R.drawable.mauricio_image_profile)
+                    "Alvaro Toconas"->tradeIcon.setImageResource(R.drawable.alvaro_image_profile)
+                    "David Tito"->tradeIcon.setImageResource(R.drawable.ibk_logo)
+                }
             }
 
             override fun onFailure(call: Call<Client>, t: Throwable) {

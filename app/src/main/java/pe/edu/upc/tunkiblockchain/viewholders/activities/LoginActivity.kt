@@ -1,34 +1,31 @@
 package pe.edu.upc.tunkiblockchain.viewholders.activities
 
+import android.Manifest.permission.READ_CONTACTS
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.TargetApi
-import android.content.pm.PackageManager
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.app.LoaderManager.LoaderCallbacks
+import android.content.Context
 import android.content.CursorLoader
 import android.content.Loader
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.support.design.widget.Snackbar
+import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.TextView
-
-import java.util.ArrayList
-import android.Manifest.permission.READ_CONTACTS
-import android.content.Context
-import android.util.Log
-import android.widget.Toast
-
 import kotlinx.android.synthetic.main.activity_login.*
 import pe.edu.upc.tunkiblockchain.R
+import java.util.*
 
 /**
  * A login screen that offers login via email/password.
@@ -156,7 +153,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             sharedPref.edit().putString("username","Alvaro").apply()
             sharedPref.edit().putString("userId","C001").apply()
             sharedPref.edit().putBoolean("logged",true).apply()
-            sharedPref.edit().putString("api_key","01cocEAYXScSZIwWZ2hEBMgMEQAqFskKWc0gzNpan6YZofeYcaoYAIn3boEAj6eR").apply()
+            sharedPref.edit().putString("api_key","iiG4P8A8pUHGO3E4Tf4Ib1aL4eEZbSKTAVEETFBTuKsUTQfpqfFREH7mCiicFkhX").apply()
             Log.d("Debug","Saved Username Alvaro on Shared Preferences Instance")
         }
         if(email=="toconasalvaro@gmail.com")

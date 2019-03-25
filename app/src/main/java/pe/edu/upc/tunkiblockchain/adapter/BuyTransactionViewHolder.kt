@@ -3,6 +3,7 @@ package pe.edu.upc.tunkiblockchain.adapter
 import android.content.Context
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import pe.edu.upc.tunkiblockchain.R
 import pe.edu.upc.tunkiblockchain.models.BuyCoins
@@ -18,6 +19,7 @@ class BuyTransactionViewHolder(itemView: View) : TransactionViewHolder(itemView)
     val shopNameBuyTransaction = itemView.findViewById(R.id.tvShopNameBuyTransaction) as TextView
     val amountBuyTransactionTextView = itemView.findViewById(R.id.tvAmountBuyTransactions) as TextView
     val timestampTextView = itemView.findViewById(R.id.tvTimeStampBuy) as TextView
+    val buyIcon = itemView.findViewById(R.id.BuyTransactionIcon) as ImageView
     val sharedPref = itemView.context.applicationContext.getSharedPreferences("BlockChainPreferences", Context.MODE_PRIVATE)
 
     override fun bindType(item: TransactionsTypes) {
@@ -40,6 +42,13 @@ class BuyTransactionViewHolder(itemView: View) : TransactionViewHolder(itemView)
                 shopNameBuyTransaction.text = shop.coinProviderName
                 amountBuyTransactionTextView.text = "S/. ${(item as BuyCoins).amount.toString()}"
                 timestampTextView.text = "$time at $date"
+                if(shop.coinProviderName=="Plaza Vea")
+                {
+                    buyIcon.setImageResource(R.drawable.plaza_vea_logo)
+                }
+                else if(shop.coinProviderName=="Agente IBK Torre"||shop.coinProviderName=="Cajero IBK Torre"){
+                    buyIcon.setImageResource(R.drawable.ibk_logo)
+                }
             }
 
             override fun onFailure(call: Call<CoinProvider>, t: Throwable) {

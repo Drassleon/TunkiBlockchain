@@ -16,7 +16,10 @@ import pe.edu.upc.tunkiblockchain.adapter.TransactionsAdapter
 import pe.edu.upc.tunkiblockchain.models.BuyCoins
 import pe.edu.upc.tunkiblockchain.models.SellCoins
 import pe.edu.upc.tunkiblockchain.models.TradeCoins
-import pe.edu.upc.tunkiblockchain.repository.*
+import pe.edu.upc.tunkiblockchain.repository.BuyCoinsRepository
+import pe.edu.upc.tunkiblockchain.repository.RetrofitIdentityIssuer
+import pe.edu.upc.tunkiblockchain.repository.SellCoinsRepository
+import pe.edu.upc.tunkiblockchain.repository.TradeCoinsRepository
 import pe.edu.upc.tunkiblockchain.utils.TransactionsTypes
 import retrofit2.Call
 import retrofit2.Callback
@@ -67,7 +70,7 @@ class TransactionsFragment : Fragment() {
         transactionRecyclerView.adapter = transactionAdapter
         transactionRecyclerView.layoutManager = transactionLayoutManager
 
-        noTransactionsTextView = view.findViewById(R.id.NoTransactionsTextView)
+        noTransactionsTextView = view.findViewById(R.id.NoTransactionsTextView) as TextView
 
         /*tradeRecyclerView = view.findViewById(R.id.rvTradeTransactions)
         tradeAdapter = TradeTransactionAdapter(tradesList)
@@ -106,10 +109,16 @@ class TransactionsFragment : Fragment() {
                     Log.d("Debug",response.message())
                 }
                 tradesList = response.body() as ArrayList<TradeCoins>
-                for(item in tradesList)
+                var aux = 0
+                while (aux<4)
+                {
+                    transactionList.add(tradesList[aux])
+                    aux++
+                }
+                /*for(item in tradesList)
                 {
                     transactionList.add(item)
-                }
+                }*/
                 transactionAdapter.list = transactionList
                 transactionAdapter.notifyDataSetChanged()
                 /*tradeAdapter.list = tradesList
@@ -139,10 +148,16 @@ class TransactionsFragment : Fragment() {
                     Log.d("Debug",response.message())
                 }
                 buyList = response.body() as ArrayList<BuyCoins>
-                for(item in buyList)
+                var aux = 0
+                while (aux<4)
+                {
+                    transactionList.add(buyList[aux])
+                    aux++
+                }
+                /*for(item in buyList)
                 {
                     transactionList.add(item)
-                }
+                }*/
                 transactionAdapter.list = transactionList
                 transactionAdapter.notifyDataSetChanged()
                 /*buyAdapter.list = buyList
@@ -174,10 +189,16 @@ class TransactionsFragment : Fragment() {
                     Log.d("Debug",response.message())
                 }
                 sellList = response.body() as ArrayList<SellCoins>
-                for(item in sellList)
+                var aux = 0
+                while (aux<4)
+                {
+                    transactionList.add(sellList[aux])
+                    aux++
+                }
+                /*for(item in sellList)
                 {
                     transactionList.add(item)
-                }
+                }*/
                 transactionAdapter.list = transactionList
                 transactionAdapter.notifyDataSetChanged()
                 /*sellAdapter.list = sellList
@@ -191,4 +212,5 @@ class TransactionsFragment : Fragment() {
         })
         return view
     }
+
 }

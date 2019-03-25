@@ -17,6 +17,16 @@ class ContactAdapter(var list: List<Client>): RecyclerView.Adapter<ContactViewHo
     override fun onBindViewHolder(holder: ContactViewHolder, pos: Int) {
         holder.contactNameTextView.text = list[pos].clientName
         holder.contactPhoneNumberTextView.text = "123456789"
+        when(list[pos].clientName)
+        {
+            "Juan Paul Rodriguez"->holder.contactProfileImageView.setImageResource(R.drawable.juan_image_profile)
+            "Noelia Barragan"->holder.contactProfileImageView.setImageResource(R.drawable.noelia_image_profile)
+            "Constanza Salinas"->holder.contactProfileImageView.setImageResource(R.drawable.constanza_image_profile)
+            "Mauricio Sanchez"->holder.contactProfileImageView.setImageResource(R.drawable.mauricio_image_profile)
+            "Alvaro Toconas"->holder.contactProfileImageView.setImageResource(R.drawable.alvaro_image_profile)
+            "David Tito"->holder.contactProfileImageView.setImageResource(R.drawable.ibk_logo)
+        }
+
         holder.rootContacts.setOnClickListener {
             val context = it.context
             context.startActivity(Intent(context,PayContactActivity::class.java).putExtra("contact",list[pos]))
