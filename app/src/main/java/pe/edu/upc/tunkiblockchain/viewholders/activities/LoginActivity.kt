@@ -24,6 +24,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_login.*
+import org.w3c.dom.Text
 import pe.edu.upc.tunkiblockchain.R
 import java.util.*
 
@@ -113,14 +114,6 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         var cancel = false
         var focusView: View? = null
 
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(passwordStr) && !isPasswordValid(passwordStr)) {
-            password.error = getString(R.string.error_invalid_password)
-            focusView = password
-            cancel = true
-        }
-
-        // Check for a valid email address.
         if (TextUtils.isEmpty(emailStr)) {
             email.error = getString(R.string.error_field_required)
             focusView = email
@@ -130,7 +123,17 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             focusView = email
             cancel = true
         }
-
+        if(TextUtils.isEmpty(passwordStr))
+        {
+            password.error = getString(R.string.error_field_required)
+        }
+        // Check for a valid password, if the user entered one.
+        if (!isPasswordValid(passwordStr)) {
+            password.error = getString(R.string.error_incorrect_password)
+            focusView = password
+            cancel = true
+        }
+        // Check for a valid email address.
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
@@ -170,15 +173,17 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             sharedPref.edit().putString("username","David").apply()
             sharedPref.edit().putString("userId","C006").apply()
             sharedPref.edit().putBoolean("logged",true).apply()
-            sharedPref.edit().putString("api_key","D8GI4aaZ6aZJbH6eSytcUmmX275IYxZuLsaACHHpqOElyhiyjsaKRdTEyejXTSxq").apply()
+            sharedPref.edit().putString("api_key","IJjKEfWVrLkotfNiQOwaURxTt3Ujg2SGJZn97MaU9KgwDVAsoANEVjJMjHgwUjgd").apply()
             Log.d("Debug","Saved Username David on Shared Preferences Instance")
         }
         return flag
     }
 
     private fun isPasswordValid(password: String): Boolean {
-        //TODO: Replace this with your own logic
-        return password.length > 4
+
+        if(password=="123456")
+            return true
+        return false
     }
 
     /**

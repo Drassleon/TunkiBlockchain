@@ -61,7 +61,7 @@ class ContactFragment : Fragment() {
                     {
                         currentClient=contact
                         tokenAmountTextView.text = currentClient.savings.toString()
-                        sharedPref?.edit()?.putString("amountTokens",currentClient.savings.toString())?.apply()
+                        sharedPref.edit().putString("amountTokens",currentClient.savings.toString()).apply()
                     }
                 }
                 contactsList.remove(currentClient)

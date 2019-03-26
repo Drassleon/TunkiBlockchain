@@ -109,16 +109,21 @@ class TransactionsFragment : Fragment() {
                     Log.d("Debug",response.message())
                 }
                 tradesList = response.body() as ArrayList<TradeCoins>
-                var aux = 0
-                while (aux<4)
-                {
-                    transactionList.add(tradesList[aux])
-                    aux++
+                if(tradesList.size>4) {
+                    var aux = 0
+                    while (aux < 4) {
+                        transactionList.add(tradesList[aux])
+                        aux++
+                    }
                 }
-                /*for(item in tradesList)
+                else
                 {
-                    transactionList.add(item)
-                }*/
+                    for(item in tradesList)
+                    {
+                        transactionList.add(item)
+                    }
+                }
+
                 transactionAdapter.list = transactionList
                 transactionAdapter.notifyDataSetChanged()
                 /*tradeAdapter.list = tradesList
@@ -148,16 +153,22 @@ class TransactionsFragment : Fragment() {
                     Log.d("Debug",response.message())
                 }
                 buyList = response.body() as ArrayList<BuyCoins>
-                var aux = 0
-                while (aux<4)
-                {
-                    transactionList.add(buyList[aux])
-                    aux++
+                if(buyList.size>4) {
+
+                    var aux = 0
+                    while (aux < 4) {
+                        transactionList.add(buyList[aux])
+                        aux++
+                    }
                 }
-                /*for(item in buyList)
+                else
                 {
-                    transactionList.add(item)
-                }*/
+                    for(item in buyList)
+                    {
+                        transactionList.add(item)
+                    }
+                }
+
                 transactionAdapter.list = transactionList
                 transactionAdapter.notifyDataSetChanged()
                 /*buyAdapter.list = buyList
@@ -189,16 +200,18 @@ class TransactionsFragment : Fragment() {
                     Log.d("Debug",response.message())
                 }
                 sellList = response.body() as ArrayList<SellCoins>
-                var aux = 0
-                while (aux<4)
-                {
-                    transactionList.add(sellList[aux])
-                    aux++
+                if(sellList.size>4) {
+                    var aux = 0
+                    while (aux < 4) {
+                        transactionList.add(sellList[aux])
+                        aux++
+                    }
                 }
-                /*for(item in sellList)
-                {
-                    transactionList.add(item)
-                }*/
+                else {
+                    for (item in sellList) {
+                        transactionList.add(item)
+                    }
+                }
                 transactionAdapter.list = transactionList
                 transactionAdapter.notifyDataSetChanged()
                 /*sellAdapter.list = sellList
